@@ -1,3 +1,14 @@
+# ignore extension-less execs by ignoring all
+*
+# unignore dirs
+!*/
+# unignore files with extensions
+!*.*
+# unignore make
+!Makefile
+
+# ---
+
 # Prerequisites
 *.d
 
