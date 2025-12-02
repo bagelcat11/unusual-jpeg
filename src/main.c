@@ -1,5 +1,4 @@
-#include "raylib.h"
-#include <stdio.h>
+#include "lossy_operations.h"
 
 int main(int argc, char** argv) {
     const int screenW = 800;
@@ -8,20 +7,15 @@ int main(int argc, char** argv) {
     SetTargetFPS(30);
 
     // textures must be loaded after window is initialized
-    Image car = LoadImage("../input-imgs/1998_pontiac.jpg");
+    // make a copy so you don't modify the original lol
+    Image car = ImageCopy(LoadImage("../input-imgs/1998_pontiac.jpg"));
     ImageResize(&car, screenW, screenH);
 
-    for (int x = 0; x < screenW; x++) {
-        if (x % 10 == 0) {
-            for (int y = 0; y < screenH; y++) {
-                ImageDrawPixel(&car, x, y, WHITE);
-            }
-        }
-    }
+    // make the export
+    ExportImage(car, "../output-imgs/1998_pontiac_JUST_SMALL.jpg");
 
     // make a texture so you can draw it in the window
     Texture2D car_tex = LoadTextureFromImage(car);
-
     while (!WindowShouldClose())
     {
         // update vars
